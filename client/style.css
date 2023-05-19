@@ -9,6 +9,7 @@
 
 body {
   background: #343541;
+  overflow: hidden;
 }
 
 #app {
@@ -37,6 +38,27 @@ body {
 
   padding-bottom: 20px;
   scroll-behavior: smooth;
+}
+
+#left_col{
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  /*gap: 10px;*/
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  padding-bottom: 20px;
+  scroll-behavior: smooth;
+}
+
+#right_col{
+  float: left;
+  width: 40%;
+  overflow: auto;
+  background: #dcdcdc;
 }
 
 /* hides scrollbar */
@@ -90,7 +112,7 @@ body {
   flex: 1;
 
   color: #dcdcdc;
-  font-size: 20px;
+  font-size: 15px;
 
   max-width: 100%;
   overflow-x: scroll;
@@ -126,4 +148,38 @@ form {
 
 textarea {
   width: 100%;
+}
+
+h1 {
+  color: #077434;
+  font-size: 30px;
+}
+h2 {
+  color: #000000;
+  font-size: 20px;
+}
+
+p {
+  color: #000000;
+  font-size: 10px;
+}
+
+label{
+  color: #000000;
+  font-size: 20px;
+  display: block;
+	padding: 10px;
+	margin: 3px;
+}
+
+input{
+  color: #babbc9;
+  font-weight: bold;
+}
+
+li{
+  color: #000000;
+  font-size: 12px;
+  margin-left: 2px;
+  list-style-type: disc;
 }

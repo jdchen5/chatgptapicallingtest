@@ -2,7 +2,7 @@ import bot from './assets/bot.svg';
 import user from './assets/user.svg';
 
 const form = document.querySelector('form');
-const chatContainer = document.querySelector('#chat_container');
+const chatContainer = document.querySelector('#left_col');
 
 let loadInterval;
 // while waiting for the response from ChatGPT, showing ... as loading status
@@ -27,6 +27,7 @@ function typeText (element, text) {
         if(index < text.length){
             element.innerHTML += text.charAt(index);
             index++;
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         } else {
             clearInterval(interval);
         }
@@ -79,10 +80,28 @@ const handleSubmit = async (e) => {
  
     // to focus scroll to the bottom 
     chatContainer.scrollTop = chatContainer.scrollHeight;
+    console.log("height",chatContainer.scrollHeight);
   
     // specific message div 
     const messageDiv = document.getElementById(uniqueId);
+
+    // get temperature parameter value
+    const paraTemperature = document.getElementById("changeTemperature").value;
+
+    // get Transformation Text and check whether it is empty
+    const paraTransformationText = document.getElementById("transformationTextEnter").value;
+    var promptText = data.get('prompt');
+    if (paraTransformationText) {
+        promptText = promptText + "\n" + "Review:" + paraTransformationText;
+    }
+
     console.log('messageDiv=',messageDiv);
+    console.log('temperature', paraTemperature);
+    console.log('paraTransformationText', paraTransformationText);
+    console.log('promptText', promptText);
+
+
+    
     // messageDiv.innerHTML = "..."
     loader(messageDiv);
     //fetch data from server -> bot's response
@@ -92,7 +111,9 @@ const handleSubmit = async (e) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            prompt: data.get('prompt')
+           // prompt: data.get('prompt'),
+            prompt: promptText,
+            temperature: document.getElementById("changeTemperature").value 
         })
     })
 

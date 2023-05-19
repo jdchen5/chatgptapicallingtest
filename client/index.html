@@ -4,16 +4,114 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codex - Jing Coding AI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ChatGPT via API - Jing Coding AI</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div id="app">
-      <div id="chat_container"></div>
+      <div id="chat_container" style="display: flex; flex-direction: row">
+        <div id="left_col" style="flex: 60%"></div>
+        <div id="right_col" style="flex: 40%">
+          <h1>Configuration and Tips...</h1>
+          <h2><u>Prompt Tips</u></h2>
+          <ul>
+            <li>
+              <strong> Principle 1:</strong> Write clear and specific
+              instructions
+            </li>
+            <ul>
+              <li>
+                - Use delimiters to clearly indicate distinct parts of the input
+                and delimiters can be:
+                &#8217;&#8217;&#8217;,&#8220;&#8220;&#8220;,&lt;&gt;, &lt;tag
+                &gt; &lt;&#47;tag &gt;…;
+              </li>
+              <li>
+                - Ask for a structured output, JSON, HTML and ask the model to
+                check whether conditions are satisfied.
+              </li>
+            </ul>
+            <li>
+              <strong> Principle 2: </strong>Give the model time to
+              &#8220;think&#8221;
+            </li>
+            <ul>
+              <li>
+                - Specify the steps required to complete a task and ssk for
+                output in a specified format
+              </li>
+              <li>
+                - Instruct the model to work out its own solution before rushing
+                to a conclusion
+              </li>
+            </ul>
+            <li>
+              <strong>Sample Prompt for Transformation: </strong>
+              <ul>
+                <li>
+                  <strong>Summarisation:</strong> Your task is to generate a
+                  short summary of a product \ review from an ecommerce site.
+                  Summarize the review below, delimited by triple backticks, in
+                  at most 30 words.
+                </li>
+                <li>
+                  <strong>Expanding:</strong> You are a customer service AI
+                  assistant. Your task is to send an email reply to a valued
+                  customer. Generate a reply to thank the customer for their
+                  review. If the sentiment is positive or neutral, thank them
+                  for their review. If the sentiment is negative, apologize and
+                  suggest that they can reach out to customer service. Make sure
+                  to use specific details from the review. Write in a concise
+                  and professional tone. Sign the email as `AI customer agent`.
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <h2><u>Parameters</u></h2>
+          <p>Please change the parameters from below.</p>
+          <hr />
+          <label for="temperature">
+            Temperature &#47; softmax temperature [0 - 1]
+          </label>
+          <p>
+            A value that affects the randomness of the model's output. With
+            small value, the model will result in more repetitive and "safe"
+            outputs. With large value, the model will produce more creative and
+            unpredictable outputs.
+          </p>
+          <input
+            type="number"
+            placeholder="Temperature"
+            name="changeTemperature"
+            id="changeTemperature"
+            min="0.0"
+            max="1.0"
+            step="0.1"
+            value="0.0"
+            required
+          />
+          <label for="transformationText">Transformation Text</label>
+          <textarea
+            type="text"
+            placeholder="transformationTextEnter"
+            name="transformationTextEnter"
+            id="transformationTextEnter"
+            value=""
+            rows="5"
+            cols="1"
+          ></textarea>
+          <br /><br />
+        </div>
+      </div>
 
       <form>
-        <textarea name="prompt" rows="1" cols="1" placeholder="Ask ChatGPT API via Codex..."></textarea>
+        <textarea
+          name="prompt"
+          rows="2"
+          cols="1"
+          placeholder="Ask ChatGPT API via Jing's 1st app"
+        ></textarea>
         <button type="submit"><img src="assets/send.svg" /></button>
       </form>
     </div>
